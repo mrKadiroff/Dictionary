@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable-v24/bottom_nav_tab_background.xml" value="0.1" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable-v24/ic_asosiy.xml" value="0.21851851851851853" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable-v24/ic_category.xml" value="0.24537037037037038" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable-v24/ic_edit.xml" value="0.2638888888888889" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable-v24/ic_menu_dots.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable-v24/ic_sozlar.xml" value="0.24537037037037038" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable-v24/ic_tanlangan.xml" value="0.21851851851851853" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable/btn_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable/btn_cancel_background.xml" value="0.36574074074074076" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/drawable/tahrirlash.xml" value="0.36574074074074076" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main.xml" value="0.14767932489451477" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_set.xml" value="0.12962962962962962" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_add_word.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_category.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_home.xml" value="0.22727272727272727" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_selected.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_settings.xml" value="0.18" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_word.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_word_detail.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/my_delete_dialog.xml" value="0.348731884057971" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/my_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/settings_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/words_list.xml" value="0.348731884057971" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/add_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/edit_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/popup_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/settings_tabs.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/Intel i3-9100F/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/tabs.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

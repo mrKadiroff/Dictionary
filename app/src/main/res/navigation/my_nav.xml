@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment2">
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.myapplication.bottom_fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment2_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedFragment"
+        android:name="com.example.myapplication.bottom_fragments.SelectedFragment"
+        android:label="fragment_selected"
+        tools:layout="@layout/fragment_selected" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.myapplication.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.myapplication.viewpagerFragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_wordDetailFragment"
+            app:destination="@id/wordDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordDetailFragment"
+        android:name="com.example.myapplication.bottom_fragments.WordDetailFragment"
+        android:label="fragment_word_detail"
+        tools:layout="@layout/fragment_word_detail" />
+</navigation>

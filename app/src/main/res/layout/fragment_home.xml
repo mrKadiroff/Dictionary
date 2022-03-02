@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#EAEAEA"
+    android:layout_height="match_parent"
+    tools:context=".bottom_fragments.HomeFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tooolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:title="My Dictionary"
+        app:titleTextColor="@color/black"
+        android:background="@color/white"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        app:tabMode="scrollable"
+        app:tabIndicatorHeight="1dp"
+        android:layout_marginTop="19dp"
+        app:tabIndicatorGravity="top"
+        app:tabIndicatorColor="#FCB600"
+        app:tabTextColor="#FCB600"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
