@@ -11,7 +11,6 @@ import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.SplashActivity
 import com.example.myapplication.adapters.MainView2Adapter
-import com.example.myapplication.adapters.MainViewAdapter
 import com.example.myapplication.database.AppDatabase
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.databinding.FragmentMainBinding
@@ -60,18 +59,32 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
         appDatabase = AppDatabase.getInstance(binding.root.context)
 
-        categorylist = ArrayList()
-        categorylist = appDatabase.categoryDao().getAllKategoria() as ArrayList<Category>
-        setViewpager()
         setToolbar()
-//        val container =(activity as MainActivity).findViewById<View>(R.id.asad)
+        setViewpager()
+
+
 
         return binding.root
     }
 
+    private fun setViewpager() {
+        categorylist = ArrayList()
+        categorylist = appDatabase.categoryDao().getAllKategoria() as ArrayList<Category>
+
+        val viewPager = binding.viewPager
+        val tabLayout = binding.tabLayout
+
+        val adapter = MainView2Adapter(categorylist,childFragmentManager, lifecycle)
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = categorylist[position].cat_name
+        }.attach()
+    }
+
     private fun setToolbar() {
-        binding.tooolbar.inflateMenu(R.menu.edit_menu)
-        binding.tooolbar.setOnMenuItemClickListener {
+        binding.toolbar.inflateMenu(R.menu.edit_menu)
+        binding.toolbar.setOnMenuItemClickListener {
             if (it.itemId==R.id.edit){
                 val intet = Intent(binding.root.context,SetActivity::class.java)
                 startActivity(intet)
@@ -79,25 +92,6 @@ class HomeFragment : Fragment() {
             true
         }
     }
-
-    private fun setViewpager() {
-
-        val adapter=MainView2Adapter(childFragmentManager,lifecycle)
-        binding.viewPager.adapter = adapter
-
-        TabLayoutMediator(binding.tablayout,binding.viewPager){tab,position->
-
-
-
-            tab.text = categorylist[-1 -position].cat_name
-
-        }.attach()
-
-        binding.viewPager.isSaveEnabled = false
-
-
-    }
-
 
 
     companion object {

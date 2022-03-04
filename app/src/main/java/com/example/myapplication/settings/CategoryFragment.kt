@@ -182,6 +182,11 @@ class CategoryFragment : Fragment() {
 
     private fun setToolbar() {
         binding.tooolbar.inflateMenu(R.menu.add_menu)
+
+        binding.tooolbar.setNavigationOnClickListener {
+            (activity as SetActivity).exit()
+        }
+
         binding.tooolbar.setOnMenuItemClickListener {
             if (it.itemId==R.id.addd){
                 val alertDialog = AlertDialog.Builder(binding.root.context)

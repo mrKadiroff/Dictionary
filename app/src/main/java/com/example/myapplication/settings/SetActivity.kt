@@ -33,6 +33,9 @@ class SetActivity : AppCompatActivity() {
 //        }
 
     }
+    fun exit(){
+        finish()
+    }
 
     fun showBottomNavigation()
     {

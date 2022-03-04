@@ -1,14 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#F4F3F3"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".settings.AddWordFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tooolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Add Fragment" />
+        android:layout_height="60dp"
+        app:title="So'z qo'shish"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:titleTextColor="@color/black"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        android:background="@color/white"/>
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/rasm"
+        android:layout_width="125dp"
+        android:layout_height="93dp"
+        android:src="@drawable/image_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tooolbar"
+        app:layout_constraintVertical_bias="0.050000012" />
+
+    <TextView
+        android:id="@+id/subtitr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="7dp"
+        app:layout_constraintTop_toBottomOf="@id/rasm"
+        android:text="So'zga doir rasm qo'shing"/>
+
+    <TextView
+        android:id="@+id/subtitr_spin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kategoriyalardan birini tanlang"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitr"
+        app:layout_constraintVertical_bias="0.04000002" />
+
+    <Spinner
+        android:id="@+id/cat_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/editback"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitr_spin" />
+
+    <TextView
+        android:id="@+id/subtitr_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="So'zni kiriting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/cat_spinner"
+        app:layout_constraintTop_toBottomOf="@id/cat_spinner"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/word_et"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:paddingStart="12dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/editback"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitr_word" />
+
+    <TextView
+        android:id="@+id/subtitr_trans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Tarjimasini kiriting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/word_et"
+        app:layout_constraintTop_toBottomOf="@id/word_et"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/translate_et"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:paddingStart="12dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/editback"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitr_trans" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/btn_background"
+        android:text="Saqlash"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/translate_et"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/translate_et"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancel"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_cancel_background"
+        android:text="Bekor qilish"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:layout_marginBottom="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/add"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintTop_toBottomOf="@id/translate_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

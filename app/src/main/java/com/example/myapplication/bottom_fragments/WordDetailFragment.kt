@@ -1,11 +1,14 @@
 package com.example.myapplication.bottom_fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.settings.SetActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +39,16 @@ class WordDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_word_detail, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainActivity).hideBottomNavigation()
+    }
+
+    override fun onDetach() {
+        (activity as MainActivity).showBottomNavigation()
+        super.onDetach()
     }
 
     companion object {

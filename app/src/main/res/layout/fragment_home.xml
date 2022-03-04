@@ -9,27 +9,31 @@
     tools:context=".bottom_fragments.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tooolbar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:title="My Dictionary"
         app:titleTextColor="@color/black"
-        android:background="@color/white"/>
+        android:background="@color/white" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tablayout"
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        app:tabMode="scrollable"
-        app:tabIndicatorHeight="1dp"
+        app:tabIconTint="@color/grey"
+        android:paddingStart="12dp"
         android:layout_marginTop="19dp"
         app:tabIndicatorGravity="top"
+        app:tabMode="scrollable"
+        app:tabIndicatorHeight="1dp"
         app:tabIndicatorColor="#FCB600"
-        app:tabTextColor="#FCB600"/>
+        app:tabSelectedTextColor="#FCB600"
+        app:tabTextColor="#8D9BA8" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>
