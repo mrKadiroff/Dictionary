@@ -14,11 +14,17 @@ class Word :Serializable {
     var word_photo: String? = null
 
     @ColumnInfo(name = "word_kategorya")
-    var word_category: String? = null
+    var word_category: Int? = null
 
     @ColumnInfo(name = "soz")
     var word: String? = null
 
     @ColumnInfo(name = "tarjima")
     var translate: String? = null
+
+    @ColumnInfo(name = "rangi")
+    var color: Int? = null
+
+    @ColumnInfo(name = "tanlangan")
+    var selected: String? = null
 }

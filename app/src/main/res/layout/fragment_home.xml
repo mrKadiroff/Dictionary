@@ -23,6 +23,7 @@
         android:background="@color/white"
         app:tabIconTint="@color/grey"
         android:paddingStart="12dp"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         android:layout_marginTop="19dp"
         app:tabIndicatorGravity="top"
         app:tabMode="scrollable"

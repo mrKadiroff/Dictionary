@@ -1,7 +1,6 @@
 package com.example.myapplication.settings
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,23 +9,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.adapters.CategoryAdapter
 import com.example.myapplication.database.AppDatabase
 import com.example.myapplication.databinding.FragmentCategoryBinding
-import com.example.myapplication.databinding.FragmentSettingsBinding
 import com.example.myapplication.databinding.MyDialogBinding
 import com.example.myapplication.entity.Category
-import com.example.myapplication.viewpagerFragments.MainFragment
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import android.content.Context
 import android.view.ContextThemeWrapper
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.MyDeleteDialogBinding
+import com.example.myapplication.entity.Word
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -54,6 +51,8 @@ class CategoryFragment : Fragment() {
     lateinit var binding: FragmentCategoryBinding
     lateinit var appDatabase: AppDatabase
     private lateinit var categoryAdapter: CategoryAdapter
+
+    lateinit var categorylist:ArrayList<Category>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -126,6 +125,8 @@ class CategoryFragment : Fragment() {
 
                             dialogView.add.setOnClickListener {
                                 appDatabase.categoryDao().deleteCategory(category)
+                                appDatabase.wordDao().deleteByCategoryIdd(category.id!!)
+
                                 dialog.dismiss()
                             }
 
@@ -156,6 +157,13 @@ class CategoryFragment : Fragment() {
 
 
 
+            }
+
+            override fun onItemClick(category: Category) {
+                var bundle = Bundle()
+                bundle.putString("kat","kat")
+                bundle.putSerializable("cat",category)
+                findNavController().navigate(R.id.wordFragment,bundle)
             }
 
 
@@ -194,16 +202,57 @@ class CategoryFragment : Fragment() {
                 val dialogView =
                     MyDialogBinding.inflate(LayoutInflater.from(binding.root.context),null,false)
 
+                var same = false
+
                 dialogView.add.setOnClickListener {
-                    val category = Category()
-                    category.cat_name = dialogView.sarlavha.text.toString().trim()
-                    Observable.fromCallable {
-                        appDatabase.categoryDao().addCategory(category)
-                    }.subscribe{
-                        Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
-                        dialog.dismiss()
+
+                    categorylist = appDatabase.categoryDao().getAllKategoria() as ArrayList<Category>
+                    val categName = dialogView.sarlavha.text.toString()
+
+                    if (dialogView.sarlavha.text.toString().isNotEmpty()){
+                        for (i in 0 until categorylist.size){
+                            if (categorylist[i].cat_name == categName){
+                                same = true
+                                break
+                            }
+                        }
+                        if (!same){
+                            val category = Category()
+                            category.cat_name = dialogView.sarlavha.text.toString().trim()
+                            Observable.fromCallable {
+                                appDatabase.categoryDao().addCategory(category)
+                            }.subscribe{
+                                Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
+                                dialog.dismiss()
+                            }
+                        }else{
+                            Toast.makeText(binding.root.context, "Bunday nomli kategoriya bor!!", Toast.LENGTH_SHORT).show()
+                            same=false
+                        }
+                    }else{
+                        Toast.makeText(binding.root.context,"Ma'lumotlarni to'liq kiritmadingizku brat",Toast.LENGTH_SHORT).show()
                     }
                 }
+
+
+
+
+
+
+
+
+
+
+//                dialogView.add.setOnClickListener {
+//                    val category = Category()
+//                    category.cat_name = dialogView.sarlavha.text.toString().trim()
+//                    Observable.fromCallable {
+//                        appDatabase.categoryDao().addCategory(category)
+//                    }.subscribe{
+//                        Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
+//                        dialog.dismiss()
+//                    }
+//                }
 
 
                dialogView.cancel.setOnClickListener {

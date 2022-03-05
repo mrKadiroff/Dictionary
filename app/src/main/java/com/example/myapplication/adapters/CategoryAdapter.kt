@@ -20,6 +20,10 @@ class CategoryAdapter(var onItemClickListener: OnItemClickListener) : ListAdapte
                 onItemClickListener.onItemPopClick(category,settingsListBinding.dots)
             }
 
+            settingsListBinding.root.setOnClickListener {
+                onItemClickListener.onItemClick(category)
+            }
+
         }
     }
 
@@ -43,6 +47,7 @@ class CategoryAdapter(var onItemClickListener: OnItemClickListener) : ListAdapte
     }
     interface OnItemClickListener{
         fun onItemPopClick(category: Category,imageView: ImageView)
+        fun onItemClick(category: Category)
 
     }
 

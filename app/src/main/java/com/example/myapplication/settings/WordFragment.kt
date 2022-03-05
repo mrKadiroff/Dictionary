@@ -18,6 +18,7 @@ import com.example.myapplication.databinding.FragmentCategoryBinding
 import com.example.myapplication.databinding.FragmentWordBinding
 import com.example.myapplication.databinding.MyDeleteDialogBinding
 import com.example.myapplication.databinding.MyDialogBinding
+import com.example.myapplication.entity.Category
 import com.example.myapplication.entity.Word
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
@@ -56,10 +57,109 @@ class WordFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentWordBinding.inflate(layoutInflater,container,false)
         appDatabase = AppDatabase.getInstance(binding.root.context)
-        setToolbar()
-        setRv()
+
+
+        val stringg = arguments?.getSerializable("kat")
+
+        if (stringg!=null){
+            val category = arguments?.getSerializable("cat") as Category
+            setToolbar()
+            setCategoryBasedRV()
+            binding.tooflbar.title = category.cat_name
+        }else {
+            setToolbar()
+            setRv()
+        }
+
+
+
 
         return binding.root
+    }
+
+    private fun setCategoryBasedRV() {
+        val category = arguments?.getSerializable("cat") as Category
+
+        wordAdapter = WordAdapter(object:WordAdapter.OnItemClickListener{
+            override fun onItemPopClick(word: Word, imageView: ImageView) {
+
+                val wrapper: Context = ContextThemeWrapper(binding.root.context, R.style.popupMenuStyle)
+                val popupMenu = PopupMenu(wrapper, imageView)
+                popupMenu.inflate(R.menu.popup_menu)
+
+                popupMenu.setOnMenuItemClickListener { item ->
+                    val itemId = item?.itemId
+
+                    when (itemId) {
+                        R.id.edit -> {
+
+                            var bundle = Bundle()
+                            bundle.putSerializable("value",word)
+                            bundle.putString("edit","edit")
+                            findNavController().navigate(R.id.addWordFragment,bundle)
+
+
+
+                        }
+                        R.id.delete -> {
+
+
+                            val alertDialog = AlertDialog.Builder(binding.root.context)
+                            val dialog = alertDialog.create()
+                            val dialogView = MyDeleteDialogBinding.inflate(
+                                LayoutInflater.from(binding.root.context),
+                                null,
+                                false
+                            )
+
+                            dialogView.add.setOnClickListener {
+                                appDatabase.wordDao().deleteWord(word)
+                                dialog.dismiss()
+                            }
+
+                            dialogView.cancel.setOnClickListener {
+                                dialog.dismiss()
+                            }
+
+                            dialog.setView(dialogView.root)
+                            dialog.show()
+
+
+
+
+
+
+
+
+
+
+                        }
+                    }
+                    true
+                }
+
+                popupMenu.show()
+
+            }
+
+        })
+
+        appDatabase.wordDao().getWordsByCategoryId(category.id!!)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object: Consumer<List<Word>> {
+                override fun accept(t: List<Word>?) {
+                    wordAdapter.submitList(t)
+                }
+
+            }, object : Consumer<Throwable> {
+                override fun accept(t: Throwable?) {
+
+                }
+
+            })
+        binding.rvWord.adapter = wordAdapter
+
     }
 
     private fun setRv() {

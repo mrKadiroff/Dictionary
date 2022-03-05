@@ -59,13 +59,17 @@ class MainFragment : Fragment() {
 
 
         wordAdapter = WordMainAdapter(object:WordMainAdapter.OnItemClickListener{
-            override fun onItemPopClick(word: Word, imageView: ImageView) {
-                findNavController().navigate(R.id.wordDetailFragment)
+            override fun onItemPopClick(word: Word, imageView: ImageView, position: Int) {
+                var bundle = Bundle()
+                bundle.putInt("position",position)
+                bundle.putSerializable("word",word)
+                findNavController().navigate(R.id.wordDetailFragment,bundle)
             }
+
 
         })
 
-        appDatabase.wordDao().getWordsByCategoryName(categorylist[categoryID!!-1].cat_name!!)
+        appDatabase.wordDao().getWordsByCategoryId(categorylist[categoryID!!-1].id!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object: Consumer<List<Word>> {

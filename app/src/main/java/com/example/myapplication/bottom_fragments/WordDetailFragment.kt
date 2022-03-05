@@ -1,13 +1,19 @@
 package com.example.myapplication.bottom_fragments
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.database.AppDatabase
+import com.example.myapplication.databinding.FragmentAddWordBinding
+import com.example.myapplication.databinding.FragmentWordDetailBinding
+import com.example.myapplication.entity.Word
 import com.example.myapplication.settings.SetActivity
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,12 +39,54 @@ class WordDetailFragment : Fragment() {
         }
     }
 
+    lateinit var binding: FragmentWordDetailBinding
+    lateinit var appDatabase: AppDatabase
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_word_detail, container, false)
+        binding =  FragmentWordDetailBinding.inflate(layoutInflater,container,false)
+        appDatabase = AppDatabase.getInstance(binding.root.context)
+
+        setUI()
+        setClick()
+
+        return binding.root
+    }
+
+    private fun setClick() {
+        var a = 100
+        val position = arguments?.getInt("position")
+        val cameradata = arguments?.getSerializable("word") as Word
+        binding.liked.setOnClickListener {
+            if (a == position) {
+                binding.liked.setImageResource(R.drawable.ic_heart2)
+                cameradata.color = R.drawable.ic_heart2
+                cameradata.selected = "selected"
+                appDatabase.wordDao().updateWord(cameradata)
+                a++
+            } else {
+                binding.liked.setImageResource(R.drawable.ic_favourite)
+                cameradata.color = R.drawable.ic_favourite
+                cameradata.selected = "unselected"
+                appDatabase.wordDao().updateWord(cameradata)
+                a = position!!
+            }
+        }
+    }
+
+    private fun setUI() {
+        val cameradata = arguments?.getSerializable("word") as Word
+        val position = arguments?.getInt("position")
+        binding.wordImage.setImageURI(Uri.parse(cameradata.word_photo))
+        binding.word.text = cameradata.word
+        binding.translation.text = cameradata.translate
+        binding.toolbar.title = cameradata.word
+        binding.liked.setImageResource(cameradata.color!!)
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onAttach(context: Context) {

@@ -4,10 +4,10 @@
     <item
         android:id="@+id/homeFragment2"
         android:icon="@drawable/ic_asosiy"
-        android:title="home" />
+        android:title="Asosiy" />
     <item
         android:id="@+id/selectedFragment"
         android:icon="@drawable/ic_tanlangan"
-        android:title= "alarm" />
+        android:title= "Tanlangan" />
 
 </menu>

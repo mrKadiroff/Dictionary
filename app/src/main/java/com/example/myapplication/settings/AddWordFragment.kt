@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.core.view.isNotEmpty
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
@@ -79,6 +80,10 @@ class AddWordFragment : Fragment() {
         binding = FragmentAddWordBinding.inflate(layoutInflater,container,false)
         appDatabase = AppDatabase.getInstance(binding.root.context)
 
+
+        binding.tooolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         val edit = arguments?.getSerializable("edit")
         val add = arguments?.getSerializable("add")
@@ -185,17 +190,26 @@ class AddWordFragment : Fragment() {
 
                 binding.add.setOnClickListener {
                     val word = arguments?.getSerializable("value") as Word
-                    word.word_photo = fileAbsolutePath
-                    word.word_category = categoryList[binding.catSpinner.selectedItemPosition].cat_name
-                    word.word = binding.wordEt.text.toString().trim()
-                    word.translate = binding.translateEt.text.toString().trim()
 
-                    Observable.fromCallable {
-                        appDatabase.wordDao().updateWord(word)
-                    }.subscribe{
-                        Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
-                        findNavController().popBackStack()
+                    if (binding.catSpinner.isNotEmpty() && binding.wordEt.text.toString().isNotEmpty() && binding.translateEt.text.toString().isNotEmpty()){
+                        word.word_photo = fileAbsolutePath
+                        word.word_category = categoryList[binding.catSpinner.selectedItemPosition].id
+                        word.word = binding.wordEt.text.toString().trim()
+                        word.translate = binding.translateEt.text.toString().trim()
+
+                        Observable.fromCallable {
+                            appDatabase.wordDao().updateWord(word)
+                        }.subscribe{
+                            Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                    }else{
+                        Toast.makeText(binding.root.context,"Ma'lumotlarni to'liq kiritmadingizku brat",Toast.LENGTH_SHORT).show()
                     }
+
+
+
+
 
                 }
 
@@ -275,18 +289,25 @@ class AddWordFragment : Fragment() {
             var same = false
 
             binding.add.setOnClickListener {
-                val word = arguments?.getSerializable("value") as Word
-                word.word_photo = AbsolutePath
-                word.word_category = categoryList[binding.catSpinner.selectedItemPosition].cat_name
-                word.word = binding.wordEt.text.toString().trim()
-                word.translate = binding.translateEt.text.toString().trim()
 
-                Observable.fromCallable {
-                    appDatabase.wordDao().updateWord(word)
-                }.subscribe{
-                    Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
+                if (binding.catSpinner.isNotEmpty() && binding.wordEt.text.toString().isNotEmpty() && binding.translateEt.text.toString().isNotEmpty()){
+                    val word = arguments?.getSerializable("value") as Word
+                    word.word_photo = AbsolutePath
+                    word.word_category = categoryList[binding.catSpinner.selectedItemPosition].id
+                    word.word = binding.wordEt.text.toString().trim()
+                    word.translate = binding.translateEt.text.toString().trim()
+
+                    Observable.fromCallable {
+                        appDatabase.wordDao().updateWord(word)
+                    }.subscribe{
+                        Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
+                        findNavController().popBackStack()
+                    }
+                }else{
+                    Toast.makeText(binding.root.context,"Ma'lumotlarni to'liq kiritmadingizku brat",Toast.LENGTH_SHORT).show()
                 }
+
+
 
             }
 
@@ -306,7 +327,7 @@ class AddWordFragment : Fragment() {
 
         var indexMentor = -1
         for (i in 0 until categoryList.size){
-            if (categoryList[i].cat_name == word.word_category){
+            if (categoryList[i].id == word.word_category){
                 indexMentor = i
                 break
             }
@@ -400,18 +421,28 @@ class AddWordFragment : Fragment() {
                 var same = false
 
                 binding.add.setOnClickListener {
-                    val word = Word()
-                    word.word_photo = fileAbsolutePath
-                    word.word_category = categoryList[binding.catSpinner.selectedItemPosition].cat_name
-                    word.word = binding.wordEt.text.toString().trim()
-                    word.translate = binding.translateEt.text.toString().trim()
 
-                    Observable.fromCallable {
-                        appDatabase.wordDao().addWord(word)
-                    }.subscribe{
-                        Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
-                        findNavController().popBackStack()
+                    if (binding.catSpinner.isNotEmpty() && binding.wordEt.text.toString().isNotEmpty() && binding.translateEt.text.toString().isNotEmpty()){
+                        val word = Word()
+                        word.word_photo = fileAbsolutePath
+                        word.word_category = categoryList[binding.catSpinner.selectedItemPosition].id
+                        word.word = binding.wordEt.text.toString().trim()
+                        word.translate = binding.translateEt.text.toString().trim()
+                        word.color = R.drawable.ic_favourite
+                        word.selected = "unselected"
+
+                        Observable.fromCallable {
+                            appDatabase.wordDao().addWord(word)
+                        }.subscribe{
+                            Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
+                            findNavController().popBackStack()
+                        }
+                    }else{
+                        Toast.makeText(binding.root.context,"Ma'lumotlarni to'liq kiritmadingizku brat",Toast.LENGTH_SHORT).show()
                     }
+
+
+
 
                 }
 
@@ -491,18 +522,28 @@ class AddWordFragment : Fragment() {
             var same = false
 
             binding.add.setOnClickListener {
-                val word = Word()
-                word.word_photo = AbsolutePath
-                word.word_category = categoryList[binding.catSpinner.selectedItemPosition].cat_name
-                word.word = binding.wordEt.text.toString().trim()
-                word.translate = binding.translateEt.text.toString().trim()
 
-                Observable.fromCallable {
-                    appDatabase.wordDao().addWord(word)
-                }.subscribe{
-                    Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
-            }
+                if (binding.catSpinner.isNotEmpty() && binding.wordEt.text.toString().isNotEmpty() && binding.translateEt.text.toString().isNotEmpty()){
+                    val word = Word()
+                    word.word_photo = AbsolutePath
+                    word.word_category = categoryList[binding.catSpinner.selectedItemPosition].id
+                    word.word = binding.wordEt.text.toString().trim()
+                    word.translate = binding.translateEt.text.toString().trim()
+                    word.color = R.drawable.ic_favourite
+                    word.selected = "unselected"
+
+                    Observable.fromCallable {
+                        appDatabase.wordDao().addWord(word)
+                    }.subscribe{
+                        Toast.makeText(binding.root.context, "added", Toast.LENGTH_SHORT).show()
+                        findNavController().popBackStack()
+                    }
+
+                }else{
+                    Toast.makeText(binding.root.context,"Ma'lumotlarni to'liq kiritmadingizku brat",Toast.LENGTH_SHORT).show()
+                }
+
+
 
         }
 

@@ -21,7 +21,7 @@ class WordMainAdapter(var onItemClickListener: OnItemClickListener): ListAdapter
             wordsMainListBinding.translate.text = word.translate
 
             wordsMainListBinding.dots.setOnClickListener {
-                onItemClickListener.onItemPopClick(word,wordsMainListBinding.dots)
+                onItemClickListener.onItemPopClick(word,wordsMainListBinding.dots,adapterPosition)
             }
         }
     }
@@ -45,7 +45,7 @@ class WordMainAdapter(var onItemClickListener: OnItemClickListener): ListAdapter
 
     }
     interface OnItemClickListener{
-        fun onItemPopClick(word: Word,imageView: ImageView)
+        fun onItemPopClick(word: Word,imageView: ImageView,position: Int)
 
     }
 

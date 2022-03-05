@@ -58,4 +58,7 @@ dependencies {
     implementation("androidx.room:room-rxjava2:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
 
+    //blur kit
+    implementation 'io.alterac.blurkit:blurkit:1.1.0'
+
 }

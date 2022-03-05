@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
@@ -59,12 +60,45 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
         appDatabase = AppDatabase.getInstance(binding.root.context)
 
+        checkDatabase()
         setToolbar()
         setViewpager()
 
 
 
         return binding.root
+    }
+
+    private fun checkDatabase() {
+        categorylist = ArrayList()
+        categorylist = appDatabase.categoryDao().getAllKategoria() as ArrayList<Category>
+
+        if (categorylist.isNullOrEmpty()){
+            val category = Category()
+            category.cat_name="Technology"
+            appDatabase.categoryDao().addCategory(category)
+
+            category.cat_name="Sport"
+            appDatabase.categoryDao().addCategory(category)
+
+            category.cat_name="News"
+            appDatabase.categoryDao().addCategory(category)
+
+            category.cat_name="Lifestyle"
+            appDatabase.categoryDao().addCategory(category)
+
+            category.cat_name="Nature"
+            appDatabase.categoryDao().addCategory(category)
+
+            category.cat_name="People"
+            appDatabase.categoryDao().addCategory(category)
+
+            category.cat_name="Film"
+            appDatabase.categoryDao().addCategory(category)
+
+            category.cat_name="Business"
+            appDatabase.categoryDao().addCategory(category)
+        }
     }
 
     private fun setViewpager() {
@@ -91,6 +125,15 @@ class HomeFragment : Fragment() {
             }
             true
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        setViewpager()
+
+
+
+        checkDatabase()
     }
 
 
