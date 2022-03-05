@@ -3,6 +3,7 @@ package com.example.myapplication.dao
 import androidx.room.*
 import com.example.myapplication.entity.Category
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface CategoryDao {
@@ -17,7 +18,7 @@ interface CategoryDao {
     fun addCategory(category: Category)
 
     @Delete
-    fun deleteCategory(category: Category)
+    fun deleteCategory(category: Category):Single<Int>
 
     @Update
     fun updateCategory(category: Category)

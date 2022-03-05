@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.SplashActivity
@@ -108,6 +109,14 @@ class HomeFragment : Fragment() {
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
 
+
+
+
+
+
+
+
+
         val adapter = MainView2Adapter(categorylist,childFragmentManager, lifecycle)
         viewPager.adapter = adapter
 
@@ -129,11 +138,45 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        setViewpager()
+        val viewPager = binding.viewPager
+        val tabLayout = binding.tabLayout
+        categorylist = ArrayList()
+        categorylist = appDatabase.categoryDao().getAllKategoria() as ArrayList<Category>
+
+        if (viewPager.adapter!!.itemCount != categorylist.size){
+            setViewpager()
+        }else{
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = categorylist[position].cat_name
+
+
+            }.attach()
+        }
 
 
 
-        checkDatabase()
+
+
+
+
+
+
+
+//        categorylist = ArrayList()
+//        categorylist = appDatabase.categoryDao().getAllKategoria() as ArrayList<Category>
+//
+//        val viewPager = binding.viewPager
+//        val tabLayout = binding.tabLayout
+//
+//
+//
+//        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+//            tab.text = categorylist[position].cat_name
+//        }.attach()
+//
+//
+//
+//        checkDatabase()
     }
 
 

@@ -124,7 +124,15 @@ class CategoryFragment : Fragment() {
                             )
 
                             dialogView.add.setOnClickListener {
+
                                 appDatabase.categoryDao().deleteCategory(category)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe()
+
+
+
+//                                appDatabase.categoryDao().deleteCategory(category)
                                 appDatabase.wordDao().deleteByCategoryIdd(category.id!!)
 
                                 dialog.dismiss()
